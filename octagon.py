@@ -1,4 +1,5 @@
 import math
+import matplotlib.pyplot as plt
 
 class Octagon:
     
@@ -20,6 +21,26 @@ class Octagon:
     def octagon_S_and_P(self):
         print(f"Площадь восьмиугольника равна {2 * self.side * self.side * self.konstant} кв.ед")
         print(f"Периметр восьмиугольника равен {8 * self.side} ед")
+
+    def draw_shapes(self):
+        endo_R = self.endo_circle_R_and_S()
+        exo_R = self.exo_circle_R_and_S()
+        center_x, center_y = 0, 0
+        circle_exo = plt.Circle((center_x, center_y), exo_R, color='blue', fill=False, label='Описанная окружность')
+        circle_endo = plt.Circle((center_x, center_y), endo_R, color='green', fill=False, label='Вписанная окружность')
+        angles = [i * (360 / 8) for i in range(8)]
+        x_points = [center_x + exo_R * math.cos(math.radians(angle)) for angle in angles]
+        y_points = [center_y + exo_R * math.sin(math.radians(angle)) for angle in angles]        
+        plt.gca().add_patch(plt.Polygon(list(zip(x_points, y_points)), closed=True, color='red', fill=False, label='Восьмиугольник'))
+        plt.gca().add_patch(circle_exo)
+        plt.gca().add_patch(circle_endo)
+        plt.axis('scaled')
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.title('Отрисовка восьмиугольника и окружностей')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
     
     def __del__(self):
-        print("ОбЪект уничтожен")
+        print("Объект уничтожен")
