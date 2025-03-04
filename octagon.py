@@ -1,10 +1,11 @@
 import math
+
 class Octagon:
     
-    def __init__(self, side, angle, konstant):
+    def __init__(self, side, angle=None, konstant=None):
         self.side = side
         self.angle = 135
-        self.konstant = 1+pow(2,0.5)
+        self.konstant = 1 + pow(2, 0.5)
 
     def endo_circle_R_and_S(self):
         endo_R = (self.side / 2) * self.konstant
@@ -21,9 +22,4 @@ class Octagon:
         print(f"Периметр восьмиугольника равен {8 * self.side} ед")
     
     def __del__(self):
-        pass
-
-xxx = Octagon(30, None, None)
-xxx.endo_circle_R_and_S()
-xxx.exo_circle_R_and_S()
-xxx.octagon_S_and_P()
+        print("ОбЪект уничтожен")
